@@ -147,7 +147,8 @@ private void Start()
 
 
 
-    MenuActive(login_canvas);
+    //MenuActive(login_canvas); //começa o jogo pela tela de login
+    MenuActive(menugame_canvas); //começa o jogo direto pela tela principal, sem necessidade de logar
 
 }
 
@@ -174,7 +175,7 @@ void MenuActive(GameObject canvas)
 }
 
 void GetMessage(Message p_msg){
-    //função para receber os dados no formato Message
+    //função para receber os dados no formato Message, essa em especifico é utilizada na tela de login para informar os erros
     if (p_msg.GetMessage() != "")
     {
         message_text.text = p_msg.GetMessage();
@@ -202,7 +203,7 @@ void StartGame(){
 
 
 
-    //Se estiver tudo certo, iniciar jogo
+    //Se estiver tudo certo, iniciar jogo indo para o menu principal
     MenuActive(menugame_canvas);
 }
 
@@ -353,7 +354,7 @@ public void Exit_game(){
     Application.Quit();
 }
 
-
+//utilizado no manual
 public void next_button(){
     
     if (currentPage < 24){
@@ -362,7 +363,7 @@ public void next_button(){
     
     manual_imagens.texture = myTextures[currentPage];
 }
-
+//utilizado no manual
 public void back_button(){
 
     if(currentPage > 0){
