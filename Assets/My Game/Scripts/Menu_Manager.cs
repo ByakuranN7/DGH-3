@@ -83,7 +83,7 @@ public int currentPage = 0;
 
 [Space]
 [Header("Nickname-Team")]
-public GameObject abrir_cena_lobby;
+//public GameObject abrir_cena_lobby;
 //public InputField Nickname_team;
 //public Button Conectar;
 
@@ -91,14 +91,14 @@ public GameObject abrir_cena_lobby;
 [Space]
 [Header("Lobby")]
 public GameObject lobby_abrir_lobby;
-public InputField InputField_roomname;
-public Button Button_createRoom;
+//public InputField InputField_roomname;
+//public Button Button_createRoom;
 
 
 [Space]
 [Header("Room")]
-public GameObject lobby_abrir_room;
-public Text Text_sala;
+//public GameObject lobby_abrir_room;
+//public Text Text_sala;
 
 
 [Space]
@@ -136,7 +136,7 @@ private void Start()
     //Menu
     Button_Sair.onClick.AddListener(Exit_game); //sai do jogo
     Button_Regras.onClick.AddListener(delegate{MenuActive(manual_abrir_canvas);}); //abre o manual
-    Button_Iniciar.onClick.AddListener(delegate{MenuActive(abrir_cena_lobby);}); //abre o lobby
+    Button_Iniciar.onClick.AddListener(delegate{MenuActive(lobby_abrir_lobby);}); //abre o lobby
 
 
     //Baralho
@@ -173,8 +173,8 @@ private void Start()
 
     //Lobby
     
-    Button_createRoom.onClick.AddListener(delegate{MenuActive(lobby_abrir_lobby);}); //vem da tela de nickname para a tela de lobby (criação de sala)
-    Button_createRoom.onClick.AddListener(delegate{MenuActive(lobby_abrir_room);}); //cria uma sala e vai pra sala
+    //Button_createRoom.onClick.AddListener(delegate{MenuActive(lobby_abrir_lobby);}); //vem da tela de nickname para a tela de lobby (criação de sala)
+    //Button_createRoom.onClick.AddListener(delegate{MenuActive(lobby_abrir_room);}); //cria uma sala e vai pra sala
 
 
 
@@ -209,9 +209,9 @@ void MenuActive(GameObject canvas)
     
     manual_abrir_canvas.gameObject.SetActive(manual_abrir_canvas.name.Equals(canvas.name)); //abre o manual
 
-    abrir_cena_lobby.gameObject.SetActive(abrir_cena_lobby.name.Equals(canvas.name));
-    lobby_abrir_lobby.gameObject.SetActive(lobby_abrir_room.name.Equals(canvas.name));
-    lobby_abrir_room.gameObject.SetActive(lobby_abrir_room.name.Equals(canvas.name));
+    //abrir_cena_lobby.gameObject.SetActive(abrir_cena_lobby.name.Equals(canvas.name));
+    lobby_abrir_lobby.gameObject.SetActive(lobby_abrir_lobby.name.Equals(canvas.name));
+    //lobby_abrir_room.gameObject.SetActive(lobby_abrir_room.name.Equals(canvas.name));
 }
 
 void GetMessage(Message p_msg){
