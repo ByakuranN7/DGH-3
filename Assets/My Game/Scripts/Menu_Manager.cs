@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using Photon.Pun;
+using Photon.Realtime;
+
 using UnityEngine.UI; //para ter acesso aos elementos de interface
 
-public class Menu_Manager : MonoBehaviour
+public class Menu_Manager : MonoBehaviourPunCallbacks
 {
 
 [Header("Login")]
@@ -79,6 +82,26 @@ public int currentPage = 0;
 
 
 [Space]
+[Header("Nickname-Team")]
+public GameObject abrir_cena_lobby;
+//public InputField Nickname_team;
+//public Button Conectar;
+
+
+[Space]
+[Header("Lobby")]
+public GameObject lobby_abrir_lobby;
+public InputField InputField_roomname;
+public Button Button_createRoom;
+
+
+[Space]
+[Header("Room")]
+public GameObject lobby_abrir_room;
+public Text Text_sala;
+
+
+[Space]
 [Header("REST")]
 public Rest_Controller rest_script;
 
@@ -111,13 +134,13 @@ private void Start()
     register_back_button.onClick.AddListener(Button_RegisterBack); //voltar para a tela de login
 
     //Menu
-    Button_Sair.onClick.AddListener(Exit_game);
-    Button_Regras.onClick.AddListener(delegate{MenuActive(manual_abrir_canvas);});
-
+    Button_Sair.onClick.AddListener(Exit_game); //sai do jogo
+    Button_Regras.onClick.AddListener(delegate{MenuActive(manual_abrir_canvas);}); //abre o manual
+    Button_Iniciar.onClick.AddListener(delegate{MenuActive(abrir_cena_lobby);}); //abre o lobby
 
 
     //Baralho
-    Button_Baralho.onClick.AddListener(delegate{MenuActive(Baralho_invasao_inicial_canvas);});
+    Button_Baralho.onClick.AddListener(delegate{MenuActive(Baralho_invasao_inicial_canvas);});//mostra todas as cartas
     Button_proximo_obt_priv.onClick.AddListener(delegate{MenuActive(Baralho_obtencao_privilegios_canvas);});
     Button_menu_principal_1.onClick.AddListener(delegate{MenuActive(menugame_canvas);});
 
@@ -137,13 +160,25 @@ private void Start()
     Button_menu_principal_5.onClick.AddListener(delegate{MenuActive(menugame_canvas);});
 
 
-
     //Manual
-    manual_imagens.texture = myTextures[currentPage];
+    manual_imagens.texture = myTextures[currentPage]; //vai mudando a pagina do manual
 
     Button_1_prox.onClick.AddListener(next_button);
     Button_1_anterior.onClick.AddListener(back_button);
     Button_1_menu.onClick.AddListener(manual_close);
+
+
+    //Nickname-team
+    //Conectar.onClick.AddListener(dele)
+
+    //Lobby
+    
+    Button_createRoom.onClick.AddListener(delegate{MenuActive(lobby_abrir_lobby);}); //vem da tela de nickname para a tela de lobby (criação de sala)
+    Button_createRoom.onClick.AddListener(delegate{MenuActive(lobby_abrir_room);}); //cria uma sala e vai pra sala
+
+
+
+
 
 
 
@@ -157,21 +192,26 @@ private void Start()
 
 #region ##################### FUNCTIONS #####################
 //Função que Gerencia o canvas que será ativado (se o nome for igual, true; se o nome for diferente, false)
+//isso tudo é definido dentro da unity, sendo assim n há referencia ao nome real dos gameobject nessa parte
 
 void MenuActive(GameObject canvas)
 {
-    login_canvas.gameObject.SetActive(login_canvas.name.Equals(canvas.name));
+    login_canvas.gameObject.SetActive(login_canvas.name.Equals(canvas.name)); //tela de login
     register_canvas.gameObject.SetActive(register_canvas.name.Equals(canvas.name));
     message_canvas.gameObject.SetActive(message_canvas.name.Equals(canvas.name));
-    menugame_canvas.gameObject.SetActive(menugame_canvas.name.Equals(canvas.name));
+    menugame_canvas.gameObject.SetActive(menugame_canvas.name.Equals(canvas.name)); //menu inicial
 
-    Baralho_invasao_inicial_canvas.gameObject.SetActive(Baralho_invasao_inicial_canvas.name.Equals(canvas.name));
+    Baralho_invasao_inicial_canvas.gameObject.SetActive(Baralho_invasao_inicial_canvas.name.Equals(canvas.name)); //lista de cartas no menu inicial
     Baralho_obtencao_privilegios_canvas.gameObject.SetActive(Baralho_obtencao_privilegios_canvas.name.Equals(canvas.name));
     Baralho_persistencia_canvas.gameObject.SetActive(Baralho_persistencia_canvas.name.Equals(canvas.name));
     Baralho_c2_exfill_canvas.gameObject.SetActive(Baralho_c2_exfill_canvas.name.Equals(canvas.name));
     Baralho_procedimento_canvas.gameObject.SetActive(Baralho_procedimento_canvas.name.Equals(canvas.name));
     
-    manual_abrir_canvas.gameObject.SetActive(manual_abrir_canvas.name.Equals(canvas.name));
+    manual_abrir_canvas.gameObject.SetActive(manual_abrir_canvas.name.Equals(canvas.name)); //abre o manual
+
+    abrir_cena_lobby.gameObject.SetActive(abrir_cena_lobby.name.Equals(canvas.name));
+    lobby_abrir_lobby.gameObject.SetActive(lobby_abrir_room.name.Equals(canvas.name));
+    lobby_abrir_room.gameObject.SetActive(lobby_abrir_room.name.Equals(canvas.name));
 }
 
 void GetMessage(Message p_msg){
@@ -354,6 +394,7 @@ public void Exit_game(){
     Application.Quit();
 }
 
+#region ##################### MANUAL #####################
 //utilizado no manual
 public void next_button(){
     
@@ -377,9 +418,45 @@ public void manual_close(){
 currentPage = 0;
 MenuActive(menugame_canvas);
 }
+#endregion
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////tentando adaptar lobby para uma unica cena
+//ConnectToServer
+
+
+
+ /*   public InputField usernameInput;
+    public Text buttonText;
+
+    public void OnClickConnect(){
+
+        if(usernameInput.text.Length >= 1){
+            PhotonNetwork.NickName = usernameInput.text;
+            buttonText.text = "Conectando...";
+            PhotonNetwork.ConnectUsingSettings();
+        }
+    }
+
+public override void OnConnectedToMaster(){
+    SceneManager.LoadScene("Lobby"); 
+}
+*/
 
 
 
