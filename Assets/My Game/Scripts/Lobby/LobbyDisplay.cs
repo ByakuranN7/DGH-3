@@ -8,10 +8,16 @@ public class LobbyDisplay : MonoBehaviourPunCallbacks
 {
     public TextMeshProUGUI[] equipeTexts; // Textos para nomes das equipes
     public TextMeshProUGUI professorStatusText; // Texto para status do professor
+    public TextMeshProUGUI roomNameText; // Texto para o nome da sala
+
 
     void Start()
     {
         AtualizarLobby(); // Atualiza lobby ao iniciar
+
+        // Define o nome da sala no topo
+        if (PhotonNetwork.InRoom)
+        roomNameText.text = "Sala: " + PhotonNetwork.CurrentRoom.Name;
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
@@ -28,6 +34,9 @@ public class LobbyDisplay : MonoBehaviourPunCallbacks
     {
         AtualizarLobby(); // Atualiza quando propriedades mudam
     }
+
+
+
 
     void AtualizarLobby()
     {
