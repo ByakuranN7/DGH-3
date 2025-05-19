@@ -62,4 +62,38 @@ public class LobbyDisplay : MonoBehaviourPunCallbacks
         // Mostra se o professor está conectado
         professorStatusText.text = professorConectado ? "Professor conectado" : "Aguardando professor...";
     }
+
+
+
+
+
+
+
+
+//adicionando identificador para cada jogador (com exceção do professor que é facilmente identificado por ser o masterclient)
+public void OnClickFixarIdentificadoresDeEquipe()
+{
+    int equipeIndex = 1; // Começamos em 1 porque no lobby é mostrado "Equipe 1", "Equipe 2", etc.
+
+    foreach (Player player in PhotonNetwork.PlayerList)
+    {
+        if (player.IsMasterClient)
+            continue; // Pulamos o professor, ele não recebe um ID de equipe
+
+        // Verifica se o jogador tem nomes definidos na propriedade "teamNames"
+        if (player.CustomProperties.TryGetValue("teamNames", out object nomesObj))
+        {
+            // Cria um novo conjunto de propriedades personalizadas
+            ExitGames.Client.Photon.Hashtable props = new ExitGames.Client.Photon.Hashtable
+            {
+                { "equipeId", equipeIndex } // Define o identificador da equipe com base na ordem visual
+            };
+
+            player.SetCustomProperties(props); // Envia essa propriedade para o Photon (será sincronizada)
+            //Debug.Log($"Equipe com teamNames '{(string)nomesObj}' recebeu equipeId: {equipeIndex}");
+            equipeIndex++; // Avança para o próximo número de equipe
+        }
+    }
+}
+    
 }
