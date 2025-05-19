@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6bfa02a282d7ac49a2562840b0026a9, type: 3}
+  m_Name: "2 - Cria\xE7\xE3o de Novo Servi\xE7o - Modifica\xE7\xE3o"
+  m_EditorClassIdentifier: 
+  id: OBT2
+  imagem: {fileID: 21300000, guid: 4d36d2c7df0a122478b99cd929125c64, type: 3}
+  categoria: 1
