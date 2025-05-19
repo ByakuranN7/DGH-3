@@ -10,6 +10,7 @@ using UnityEngine.UI; //para ter acesso aos elementos de interface
 public class Menu_Manager : MonoBehaviourPunCallbacks
 {
 
+[Space]
 [Header("Login")]
 public GameObject login_canvas;
 public InputField login_email;

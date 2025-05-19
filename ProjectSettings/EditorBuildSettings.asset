@@ -12,6 +12,15 @@ EditorBuildSettings:
     path: Assets/My Game/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/My Game/Scenes/Gameplay.unity
+    path: Assets/My Game/Scenes/Lobby.unity
     guid: b6b11a39d5610e24bb27c5ee5646e664
+  - enabled: 1
+    path: Assets/My Game/Scenes/TeamNameEntry.unity
+    guid: 78fc164a6ee454e4e9b6fb97d070b89e
+  - enabled: 1
+    path: Assets/My Game/Scenes/SelecaoCartasMestre.unity
+    guid: acba1d55b2123f54f9ce4a53e33bea8e
+  - enabled: 1
+    path: Assets/My Game/Scenes/GameplayEquipes.unity
+    guid: acb93f3c02f9941479c7630dc9a20f42
   m_configObjects: {}
