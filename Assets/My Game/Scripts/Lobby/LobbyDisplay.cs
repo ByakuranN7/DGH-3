@@ -82,7 +82,7 @@ public class LobbyDisplay : MonoBehaviourPunCallbacks
 //adicionando identificador para cada jogador (com exceção do professor que é facilmente identificado por ser o masterclient)
 public void OnClickFixarIdentificadoresDeEquipe()
 {
-    int equipeIndex = 1; // Começamos em 1 porque no lobby é mostrado "Equipe 1", "Equipe 2", etc.
+    int equipeIndex = 1; // Começa em 1 porque no lobby é mostrado "Equipe 1", "Equipe 2", etc.
 
     foreach (Player player in PhotonNetwork.PlayerList)
     {

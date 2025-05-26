@@ -21,7 +21,7 @@ public class CartaManager : MonoBehaviour
     if (Instance == null)
     {
         Instance = this;
-        DontDestroyOnLoad(gameObject); // <- mantem salvo eu acho
+        DontDestroyOnLoad(gameObject); // <- mantem salvo
     }
     else
     {

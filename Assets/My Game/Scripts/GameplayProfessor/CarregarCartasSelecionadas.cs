@@ -34,13 +34,31 @@ public class CarregarCartasSelecionadas : MonoBehaviour
     }
 
     void InstanciarCarta(Carta carta, Transform destino)
+{
+    GameObject novaCarta = Instantiate(cartaPrefab, destino);
+    CartaVisual cartaVisual = novaCarta.GetComponent<CartaVisual>();
+
+    if (cartaVisual != null)
     {
-        GameObject novaCarta = Instantiate(cartaPrefab, destino);
-        Image imagem = novaCarta.GetComponent<Image>();
-
-        if (imagem != null)
-            imagem.sprite = carta.imagem;
-
-        // Aqui futuramente pode guardar uma referência, adicionar interações, etc.
+        cartaVisual.Configurar(carta);
     }
+
+    // Pega o botão para adicionar o clique
+    UnityEngine.UI.Button btn = novaCarta.GetComponent<UnityEngine.UI.Button>();
+    if (btn != null)
+    {
+        ProfessorRevelarCarta professorScript = FindObjectOfType<ProfessorRevelarCarta>();
+        if (professorScript != null)
+        {
+            btn.onClick.AddListener(() =>
+            {
+                professorScript.RevelarCartaParaAlunos(carta);
+            });
+        }
+    }
+}
+
+
+        
+    
 }
