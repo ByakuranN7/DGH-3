@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: 0 - Vazia (Exfill)
   m_EditorClassIdentifier: 
   id: EXF0
-  imagem: {fileID: 0}
+  imagem: {fileID: 21300000, guid: 9b9f48244b3ac774da5f8911713e6f85, type: 3}
   categoria: 3

@@ -40,6 +40,8 @@ MonoBehaviour:
   - Fire
   - RespawnSpaceship
   - RPC_IniciarPartida
+  - RPC_RevelarCarta
+  - RPC_RevelarCartaParaAlunos
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

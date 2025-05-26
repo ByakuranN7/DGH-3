@@ -1,10 +1,9 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Photon.Pun;
 
-public class LobbyController : MonoBehaviourPunCallbacks
+public class LobbyController : MonoBehaviour
 {
-    public GameObject btnIniciarPartida; // Referência ao botão (objeto GameObject)
+    public GameObject btnIniciarPartida; // Referência ao botão
 
     void Start()
     {
@@ -16,17 +15,10 @@ public class LobbyController : MonoBehaviourPunCallbacks
     {
         if (!PhotonNetwork.IsMasterClient) return;
 
-        photonView.RPC("RPC_IniciarPartida", RpcTarget.All);
-    }
-
-    [PunRPC]
-    void RPC_IniciarPartida()
-    {
-        if (PhotonNetwork.IsMasterClient)
-            SceneManager.LoadScene("SelecaoCartasMestre"); // Tela professor
-        else
-            SceneManager.LoadScene("GameplayEquipes"); // Tela equipes
+        // Chama o método do RPCManager para iniciar a partida
+        RPCManager.Instance.IniciarPartida();
     }
 }
+
 
 

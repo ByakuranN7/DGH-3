@@ -6,7 +6,7 @@ public enum CategoriaCarta
     ObtencaoPrivilegios,
     Persistencia,
     C2Exfiltracao,
-    Processos
+    Procedimento
 }
 
 [CreateAssetMenu(fileName = "NovaCarta", menuName = "Cartas/Carta")]
