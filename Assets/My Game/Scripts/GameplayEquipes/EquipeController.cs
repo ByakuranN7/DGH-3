@@ -46,6 +46,11 @@ public class EquipeController : MonoBehaviour
 
                 case EstadoPartida.TurnoEquipe_SelecionarProcedimento:
                     textoMensagemEquipe.text = "Selecione o procedimento que deseja tentar executar.";
+                    // Ativa o botão de Executar Procedimento
+                    if (EquipeCartaSelecionada.Instance != null && EquipeCartaSelecionada.Instance.botaoExecutarProcedimento != null)
+                    {
+                        EquipeCartaSelecionada.Instance.botaoExecutarProcedimento.gameObject.SetActive(true);
+                    }
                     break;
 
                 case EstadoPartida.TurnoEquipe_Explicacao:
@@ -69,6 +74,12 @@ public class EquipeController : MonoBehaviour
         {
             // Não é meu turno, apenas aguardo.
             textoMensagemEquipe.text = $"É o turno da Equipe {equipeAtual}. Aguarde sua vez.";
+            
+            // Esconde o botão para outras equipes
+            if (EquipeCartaSelecionada.Instance != null && EquipeCartaSelecionada.Instance.botaoExecutarProcedimento != null)
+            {
+                EquipeCartaSelecionada.Instance.botaoExecutarProcedimento.gameObject.SetActive(false);
+            }
         }
     }
 }

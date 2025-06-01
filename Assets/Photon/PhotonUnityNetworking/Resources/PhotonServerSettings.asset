@@ -44,6 +44,8 @@ MonoBehaviour:
   - RPC_RevelarCartaParaAlunos
   - RPC_IniciarTurno
   - RPC_AtualizarEstadoTurno
+  - RPC_AvancarParaExplicacao
+  - RPC_ReceberProcedimentoSelecionado
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
