@@ -135,7 +135,7 @@ public class ControlePartidaProfessor : MonoBehaviour
             equipeAtual = 1;
     }
 
-    void AtualizarUIProfessor()
+    public void AtualizarUIProfessor()
     {
         // Desliga todos os botões inicialmente
         botaoComecarPartida.gameObject.SetActive(false);
@@ -191,7 +191,7 @@ public class ControlePartidaProfessor : MonoBehaviour
         }
     }
 
-    void EnviarEstadoParaEquipes()
+    public void EnviarEstadoParaEquipes()
     {
         // Usa o RPCManager para enviar o estado
         RPCManager.Instance.photonView.RPC("RPC_AtualizarEstadoTurno", RpcTarget.Others, (int)estadoAtual, equipeAtual);

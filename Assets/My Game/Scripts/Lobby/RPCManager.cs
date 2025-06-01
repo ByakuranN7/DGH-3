@@ -86,4 +86,31 @@ public void RPC_AtualizarEstadoTurno(int estadoInt, int equipeAtual)
 
 
 
+
+
+
+//recebe a carta de procedimento selecionada e atualiza os estados/UI de todos
+[PunRPC]
+public void RPC_ReceberProcedimentoSelecionado(string idCarta)
+{
+    Debug.Log($"[RPCManager] Recebi ID do procedimento: {idCarta}");
+
+    // Aqui o professor faz algo com o ID recebido
+    ProfessorVisualizarCarta.Instance.MostrarCartaSelecionada(idCarta);
+}
+
+[PunRPC]
+public void RPC_AvancarParaExplicacao()
+{
+    ControlePartidaProfessor controle = FindObjectOfType<ControlePartidaProfessor>();
+    if (controle != null)
+    {
+        controle.estadoAtual = EstadoPartida.TurnoEquipe_Explicacao;
+        controle.AtualizarUIProfessor();
+        controle.EnviarEstadoParaEquipes();
+    }
+}
+
+
+
 }
