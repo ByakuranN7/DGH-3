@@ -17,8 +17,9 @@ public class CadastroSugestaoUI : MonoBehaviour
     public Button botaoPersistencia;
     public Button botaoC2;
 
-    [Header("Descrição da sugestão")]
+    [Header("Descrição da sugestão e titulo")]
     public TMP_InputField inputDescricao;
+    public TMP_InputField inputTitulo;
 
     [Header("Botão para registrar")]
     public Button botaoRegistrar;
@@ -146,14 +147,22 @@ public class CadastroSugestaoUI : MonoBehaviour
         return;
     }
 
+    if (string.IsNullOrWhiteSpace(inputTitulo.text))
+    {
+        Debug.LogWarning("Por favor, digite um título para a sugestão.");
+        return;
+    }
+
     SugestaoData novaSugestao = new SugestaoData()
     {
-        cartaInvasaoInicial = idCartaInvasao,
-        cartaObtencaoPrivilegios = idCartaPrivilegios,
-        cartaPersistencia = idCartaPersistencia,
-        cartaC2Exfiltracao = idCartaC2,
-        descricao = inputDescricao.text.Trim()
+    titulo = inputTitulo.text.Trim(),
+    cartaInvasaoInicial = idCartaInvasao,
+    cartaObtencaoPrivilegios = idCartaPrivilegios,
+    cartaPersistencia = idCartaPersistencia,
+    cartaC2Exfiltracao = idCartaC2,
+    descricao = inputDescricao.text.Trim()
     };
+
 
     restController.PostSugestao(novaSugestao, (resultado) =>
     {
@@ -195,5 +204,6 @@ public class CadastroSugestaoUI : MonoBehaviour
         SetPlaceholderAlpha(imagemC2, 0);
 
         inputDescricao.text = "";
+        inputTitulo.text = "";
     }
 }

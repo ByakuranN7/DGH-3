@@ -2,6 +2,7 @@
 public class SugestaoData
 {
     public int id;
+    public string titulo;
     public string cartaInvasaoInicial;
     public string cartaObtencaoPrivilegios;
     public string cartaPersistencia;
