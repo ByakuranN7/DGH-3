@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/My Game/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/My Game/Scenes/SugestoesScene.unity
+    guid: 99a2d321756c57d4d95cc8ed3311d1fe
+  - enabled: 1
     path: Assets/My Game/Scenes/Lobby.unity
     guid: b6b11a39d5610e24bb27c5ee5646e664
   - enabled: 1
