@@ -31,8 +31,8 @@ public class EquipeCartaSelecionada : MonoBehaviour
         Debug.Log($"Carta selecionada: {id}");
 
         // Ativa o botão de Executar se for o turno da equipe
-        if (botaoExecutarProcedimento != null)
-            botaoExecutarProcedimento.gameObject.SetActive(true);
+        //if (botaoExecutarProcedimento != null)
+            //botaoExecutarProcedimento.gameObject.SetActive(true);
     }
 
     public void ExecutarProcedimento()

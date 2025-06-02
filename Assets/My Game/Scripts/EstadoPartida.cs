@@ -6,6 +6,8 @@ public enum EstadoPartida
     TurnoEquipe_SelecionarProcedimento,
     TurnoEquipe_Explicacao,
     TurnoEquipe_Dado,
+    TurnoEquipe_Pontuar, // Novo estado
     FimTurno,
     FimPartida
 }
+

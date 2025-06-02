@@ -113,4 +113,22 @@ public void RPC_AvancarParaExplicacao()
 
 
 
+
+
+
+
+
+
+//método de enviar o resultado do dado para o professor
+[PunRPC]
+public void RPC_ResultadoDadoParaProfessor(int resultado, bool sucesso)
+{
+    ControlePartidaProfessor controle = FindObjectOfType<ControlePartidaProfessor>();
+    if (controle != null)
+    {
+        controle.ReceberResultadoDado(resultado, sucesso);
+    }
+}
+
+
 }
