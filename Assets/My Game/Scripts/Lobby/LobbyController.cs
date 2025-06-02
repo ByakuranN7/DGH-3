@@ -15,9 +15,22 @@ public class LobbyController : MonoBehaviour
     {
         if (!PhotonNetwork.IsMasterClient) return;
 
-        // Chama o método do RPCManager para iniciar a partida
-        RPCManager.Instance.IniciarPartida();
-    }
+        // Inicializa a pontuação para todas as equipes (menos o professor)
+        foreach (var player in PhotonNetwork.PlayerList)
+        {
+            if (player.IsMasterClient) continue;
+
+            ExitGames.Client.Photon.Hashtable props = new ExitGames.Client.Photon.Hashtable
+            {
+                { "pontosEquipe", 0 }
+            };
+        player.SetCustomProperties(props);
+        }
+
+    // Chama o método do RPCManager para iniciar a partida
+    RPCManager.Instance.IniciarPartida();
+    }  
+     
 }
 
 

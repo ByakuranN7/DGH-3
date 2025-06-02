@@ -43,6 +43,29 @@ public class ProfessorVisualizarCarta : MonoBehaviour
         imagemCarta.sprite = null;
         imagemCarta.color = new Color(1, 1, 1, 0); // Torna a imagem invisível
     }
+
+
+
+
+//reseta a carta de procedimento apresentada, removendo as informações dela da tela do professor para começar a rodada da proxima equipe.
+    public void LimparParaNovaEquipe()
+{
+    // Busca a carta de ID "PRO0" na lista de cartas
+    Carta cartaPadrao = CartaManager.Instance.todasAsCartas.Find(c => c.id == "PRO0");
+
+    if (cartaPadrao != null)
+    {
+        imagemCarta.sprite = cartaPadrao.imagem;
+        imagemCarta.color = Color.white;
+    }
+    else
+    {
+        Debug.LogWarning("Carta padrão (PRO0) não encontrada.");
+        imagemCarta.sprite = null;
+        imagemCarta.color = new Color(1, 1, 1, 0);
+    }
+}
+
 }
 
  

@@ -214,6 +214,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f8299725c66963945b715b349159d5a3, type: 2}
   - {fileID: 11400000, guid: fb326f99f773fa64cb23f50907d75884, type: 2}
   - {fileID: 11400000, guid: 7fec0b4226857d04ea61e0a03464427a, type: 2}
+  - {fileID: 11400000, guid: a06464d6296e0444087aa08443f391d5, type: 2}
   cartaInvasaoInicial: {fileID: 0}
   cartaObtencaoPrivilegios: {fileID: 0}
   cartaPersistencia: {fileID: 0}
