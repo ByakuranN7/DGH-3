@@ -251,7 +251,7 @@ public class ControlePartidaProfessor : MonoBehaviour
                 break;
 
             case EstadoPartida.TurnoEquipe_SelecionarProcedimento:
-                textoMensagemProfessor.text = $"Equipe {equipeAtual} está selecionando um procedimento.\n\n O procedimento selecionado aparecerá na esquerda da tela na etapa seguinte.";
+                textoMensagemProfessor.text = $"Equipe {equipeAtual} está selecionando um procedimento.\n\n O procedimento selecionado aparecerá a direita da tela na etapa seguinte.";
                 break;
 
             case EstadoPartida.TurnoEquipe_Explicacao:
@@ -263,7 +263,7 @@ public class ControlePartidaProfessor : MonoBehaviour
 
             case EstadoPartida.TurnoEquipe_Dado:
                 textoMensagemProfessor.text = $"Fale para a Equipe {equipeAtual} rolar o dado. Confirme quando o resultado aparecer em sua tela.";
-                botaoDadoRolado.gameObject.SetActive(true);
+                //botaoDadoRolado.gameObject.SetActive(true); //o botão é ativado após receber o resultado por RPC da equipe, em ReceberResultadoDado
                 break;
 
             case EstadoPartida.TurnoEquipe_Pontuar:
@@ -304,8 +304,6 @@ public class ControlePartidaProfessor : MonoBehaviour
 
     textoMensagemProfessor.text = $"A Equipe {equipeAtual} rolou {resultado}.\n" + (sucesso ? "SUCESSO!" : "FALHA!");
 
-    // O botão já existe e está configurado no estado TurnoEquipe_Dado
-    // Ativa ele só por garantia:
     botaoDadoRolado.gameObject.SetActive(true);
 }
 
