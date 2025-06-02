@@ -176,12 +176,16 @@ private IEnumerator PostSugestaoCoroutine(SugestaoData sugestao, System.Action<s
     string url = WEB_URL + "/sugestoes";
     string jsonData = JsonUtility.ToJson(sugestao);
 
-    using (UnityWebRequest www = UnityWebRequest.Post(url, jsonData))
-    {
-        www.SetRequestHeader("content-type", "application/json");
-        www.uploadHandler.contentType = "application/json";
-        www.uploadHandler = new UploadHandlerRaw(System.Text.Encoding.UTF8.GetBytes(jsonData));
-        yield return www.SendWebRequest();
+    using (UnityWebRequest www = new UnityWebRequest(url, "POST"))
+{
+    byte[] jsonToSend = System.Text.Encoding.UTF8.GetBytes(jsonData);
+    www.uploadHandler = new UploadHandlerRaw(jsonToSend);
+    www.downloadHandler = new DownloadHandlerBuffer();
+
+    www.SetRequestHeader("Content-Type", "application/json");
+
+    yield return www.SendWebRequest();
+
 
         if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError)
         {

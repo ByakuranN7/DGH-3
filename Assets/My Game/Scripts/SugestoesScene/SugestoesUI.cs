@@ -52,4 +52,20 @@ public class SugestoesUI : MonoBehaviour
             }
         }
     }
+    //metodo utilizado ao clicar em "registrar
+    public void AtualizarSugestoes()
+{
+    if (restController == null)
+    {
+        restController = FindObjectOfType<Rest_Controller>();
+        if (restController == null)
+        {
+            Debug.LogError("Rest_Controller não encontrado!");
+            return;
+        }
+    }
+
+    restController.GetSugestoes(OnSugestoesRecebidas);
+}
+
 }

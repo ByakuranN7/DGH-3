@@ -54,7 +54,7 @@ public class EquipeController : MonoBehaviour
             switch (estado)
             {
                 case EstadoPartida.TurnoEquipe_Dado:
-                    textoMensagemEquipe.text = "Role o dado. Resultados de 1-5 são falhas, enquanto que 6-20 são sucesso.";
+                    textoMensagemEquipe.text = "Role o dado. Resultados de 1-5 são falhas, enquanto que de 6-20 são sucesso.";
                     if (painelRolarDado != null) painelRolarDado.SetActive(true);
                     if (textoDado != null) textoDado.text = "-"; // Reseta o número do dado
                     break;

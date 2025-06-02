@@ -3844,7 +3844,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Dado Rolado?
+  m_text: "Avan\xE7ar"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8854f964b90960e4daa61b54fb4b03f1, type: 2}
   m_sharedMaterial: {fileID: -622420099691249759, guid: 8854f964b90960e4daa61b54fb4b03f1, type: 2}

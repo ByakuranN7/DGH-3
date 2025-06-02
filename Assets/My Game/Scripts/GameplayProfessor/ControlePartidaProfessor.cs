@@ -256,7 +256,7 @@ public class ControlePartidaProfessor : MonoBehaviour
 
             case EstadoPartida.TurnoEquipe_Explicacao:
                 string integrantes = ObterIntegrantesDaEquipe(equipeAtual);
-                textoMensagemProfessor.text = $"Equipe {equipeAtual}:\n{integrantes}\n\nInforme em voz alta o líder da rodada, responsável por explicar o motivo da escolha do procedimento e descrever a ação que a equipe deseja realizar.\n\nClique em 'Aceitar' se a explicação for satisfatória.";
+                textoMensagemProfessor.text = $"Equipe {equipeAtual}:\n{integrantes}\n\nInforme em voz alta o líder da rodada escolhido por você. O lider é responsável por explicar o motivo da escolha do procedimento e descrever a ação que a equipe deseja realizar.\n\nClique em 'Aceitar' se a explicação do líder for satisfatória.";
                 botaoAceitarExplicacao.gameObject.SetActive(true);
                 botaoRejeitarExplicacao.gameObject.SetActive(true);
                 break;
@@ -267,7 +267,7 @@ public class ControlePartidaProfessor : MonoBehaviour
                 break;
 
             case EstadoPartida.TurnoEquipe_Pontuar:
-                textoMensagemProfessor.text = $"Equipe {equipeAtual} teve sucesso! Deseja revelar uma carta?";
+                textoMensagemProfessor.text = $"Baseando-se na explicação do líder da rodada, levando em consideração a narrativa e o contexto da situação apresentada, deseja revelar uma carta?\n\nLembrete: Caso o procedimento revelaria uma carta, mas a explicação do líder não descreveu uma ação que, na prática, levaria uma pessoa a obter o resultado esperado, não revele a carta.";
                 botaoRevelarCarta.gameObject.SetActive(true);
                 botaoNaoRevelarCarta.gameObject.SetActive(true);
                 break;
@@ -278,7 +278,7 @@ public class ControlePartidaProfessor : MonoBehaviour
                 break;
 
             case EstadoPartida.FimTurno:
-                textoMensagemProfessor.text = $"Turno da Equipe {equipeAtual} finalizado.\nClique para próximo turno.";
+                textoMensagemProfessor.text = $"Turno da Equipe {equipeAtual} finalizado.\nClique para começar o próximo turno.";
                 botaoFimTurno.gameObject.SetActive(true);
                 break;
 
