@@ -6,10 +6,12 @@ public class SugestaoItem : MonoBehaviour
 {
     [Header("Referências do Prefab")]
     public TextMeshProUGUI descricaoText;
+    public TextMeshProUGUI tituloText;
     public Image[] cartaImages; // Arraste os 4 Image slots do prefab aqui
 
     public void Configurar(SugestaoData data)
 {
+    tituloText.text = data.titulo;
     descricaoText.text = data.descricao;
 
     string[] ids = {
