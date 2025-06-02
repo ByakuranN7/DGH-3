@@ -152,7 +152,7 @@ public class ControlePartidaProfessor : MonoBehaviour
     botaoRevelarCarta.gameObject.SetActive(false);
     botaoNaoRevelarCarta.gameObject.SetActive(false);
 
-    // Atualiza a pontuação da equipe atual (+1 ponto) ao clicar no botão "revelar carta", mesmo antes de revelar a carta em si
+    // Atualiza a pontuação da equipe atual (+1 ponto) ao clicar no botão "Revelar Carta"
     foreach (var player in PhotonNetwork.PlayerList)
     {
         if (player.CustomProperties.TryGetValue("equipeId", out object id) && (int)id == equipeAtual)
@@ -175,14 +175,13 @@ public class ControlePartidaProfessor : MonoBehaviour
         }
     }
 
-    // Altera o estado para FimTurno
-    estadoAtual = EstadoPartida.FimTurno;
-
-    botaoFimTurno.gameObject.SetActive(true); // Mostra o botão FimTurno
+    // Muda para o novo estado!
+    estadoAtual = EstadoPartida.TurnoEquipe_RevelarCarta;
 
     AtualizarUIProfessor();
     EnviarEstadoParaEquipes();
 }
+
 
 
 
@@ -271,6 +270,11 @@ public class ControlePartidaProfessor : MonoBehaviour
                 textoMensagemProfessor.text = $"Equipe {equipeAtual} teve sucesso! Deseja revelar uma carta?";
                 botaoRevelarCarta.gameObject.SetActive(true);
                 botaoNaoRevelarCarta.gameObject.SetActive(true);
+                break;
+
+            case EstadoPartida.TurnoEquipe_RevelarCarta:
+                textoMensagemProfessor.text = $"Clique em uma das 4 cartas da narrativa para revelá-la.";
+                // Aqui não mostra botões, porque o clique é nas cartas.
                 break;
 
             case EstadoPartida.FimTurno:
