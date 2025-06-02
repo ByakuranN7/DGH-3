@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 using Photon.Pun;
 using Photon.Realtime;
 
@@ -423,8 +423,11 @@ MenuActive(menugame_canvas);
 
 
 
-
-
+//comando que muda de cena, vai para a cena de Sugestoes.
+public void IrParaSugestoes()
+{
+    SceneManager.LoadScene("SugestoesScene");
+}
 
 
 

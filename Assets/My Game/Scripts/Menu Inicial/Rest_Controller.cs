@@ -129,4 +129,75 @@ public class Rest_Controller : MonoBehaviour
 
 #endregion
 
+
+
+
+
+
+//Partes relacionadas a criação/visualização de sugestões.
+#region ######### SUGESTÕES #########
+
+// GET - Buscar sugestões
+public void GetSugestoes(System.Action<List<SugestaoData>> callback)
+{
+    StartCoroutine(GetSugestoesCoroutine(callback));
+}
+
+private IEnumerator GetSugestoesCoroutine(System.Action<List<SugestaoData>> callback)
+{
+    string url = WEB_URL + "/sugestoes";
+
+    using (UnityWebRequest www = UnityWebRequest.Get(url))
+    {
+        yield return www.SendWebRequest();
+
+        if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError)
+        {
+            Debug.LogError(www.error);
+        }
+        else
+        {
+            string json = www.downloadHandler.text;
+            // Aqui usamos JsonHelper para listas
+            SugestaoData[] sugestoes = JsonHelper.FromJson<SugestaoData>(json);
+            callback(new List<SugestaoData>(sugestoes));
+        }
+    }
+}
+
+// POST - Enviar sugestão
+public void PostSugestao(SugestaoData sugestao, System.Action<string> callback)
+{
+    StartCoroutine(PostSugestaoCoroutine(sugestao, callback));
+}
+
+private IEnumerator PostSugestaoCoroutine(SugestaoData sugestao, System.Action<string> callback)
+{
+    string url = WEB_URL + "/sugestoes";
+    string jsonData = JsonUtility.ToJson(sugestao);
+
+    using (UnityWebRequest www = UnityWebRequest.Post(url, jsonData))
+    {
+        www.SetRequestHeader("content-type", "application/json");
+        www.uploadHandler.contentType = "application/json";
+        www.uploadHandler = new UploadHandlerRaw(System.Text.Encoding.UTF8.GetBytes(jsonData));
+        yield return www.SendWebRequest();
+
+        if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError)
+        {
+            Debug.LogError(www.error);
+            callback("Erro: " + www.error);
+        }
+        else
+        {
+            Debug.Log(www.downloadHandler.text);
+            callback("Sugestão enviada com sucesso!");
+        }
+    }
+}
+
+#endregion
+
+
+
 }
