@@ -11,13 +11,23 @@ public class ProfessorRevelarCarta : MonoBehaviourPun
         return;
     }
 
+
+    // Referência ao controlador de partida
+        ControlePartidaProfessor professor = FindObjectOfType<ControlePartidaProfessor>();
+
+    // Verifica se o estado atual permite revelar carta
+    if (professor.estadoAtual != EstadoPartida.TurnoEquipe_RevelarCarta)
+    {
+        Debug.LogWarning("Não é possível revelar carta neste momento. Estado atual: " + professor.estadoAtual);
+        return;
+    }
+
     // Envia RPC para os alunos
     RPCManager.Instance.photonView.RPC("RPC_RevelarCartaParaAlunos", RpcTarget.All, carta.id, carta.categoria.ToString());
 
     Debug.Log($"Carta {carta.id} da categoria {carta.categoria} revelada para alunos.");
 
     // Agora FINALIZA o turno após a carta ser revelada
-    ControlePartidaProfessor professor = FindObjectOfType<ControlePartidaProfessor>();
     if (professor != null)
     {
         professor.estadoAtual = EstadoPartida.FimTurno;
