@@ -22,10 +22,15 @@ public class ControlePartidaProfessor : MonoBehaviour
     public Button botaoRevelarCarta;
     public Button botaoNaoRevelarCarta;
     public Button botaoFimTurno;
+    public Button botaoFinalizarPartida;
 
     // Elementos relacionados ao resultado do dado
     public int ultimoResultadoDado;
     public bool ultimoSucesso;
+
+    //Contador de cartas reveladas, para saber que deve-se ir para o turno "FimPartida" caso for 4
+    public int cartasReveladas = 0;
+
 
     private void Awake()
     {
@@ -195,7 +200,7 @@ public class ControlePartidaProfessor : MonoBehaviour
 
 
     public void BotaoFimTurno()
-    {
+{
         if (estadoAtual != EstadoPartida.FimTurno) return;
 
         AvancarEquipe();
@@ -204,7 +209,15 @@ public class ControlePartidaProfessor : MonoBehaviour
 
         AtualizarUIProfessor();
         EnviarEstadoParaEquipes();
-    }
+}
+
+    public void BotaoFinalizarPartida()
+{
+    if (estadoAtual != EstadoPartida.FimPartida) return;
+
+    RPCManager.Instance.photonView.RPC("RPC_FinalizarPartidaParaTodos", RpcTarget.All);
+}
+
 
     #endregion
 
@@ -228,6 +241,7 @@ public class ControlePartidaProfessor : MonoBehaviour
         botaoRevelarCarta.gameObject.SetActive(false);
         botaoNaoRevelarCarta.gameObject.SetActive(false);
         botaoFimTurno.gameObject.SetActive(false);
+        botaoFinalizarPartida.gameObject.SetActive(false);
 
 
 
@@ -283,7 +297,8 @@ public class ControlePartidaProfessor : MonoBehaviour
                 break;
 
             case EstadoPartida.FimPartida:
-                textoMensagemProfessor.text = "Partida finalizada.";
+                textoMensagemProfessor.text = "A partida chegou ao fim! Reveja com os alunos como foi o jogo, discuta as decisões tomadas e o que aprenderam.";
+                botaoFinalizarPartida.gameObject.SetActive(true);
                 break;
         }
     }

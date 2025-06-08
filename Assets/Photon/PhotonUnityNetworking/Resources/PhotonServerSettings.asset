@@ -47,6 +47,7 @@ MonoBehaviour:
   - RPC_AvancarParaExplicacao
   - RPC_ReceberProcedimentoSelecionado
   - RPC_ResultadoDadoParaProfessor
+  - RPC_FinalizarPartidaParaTodos
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

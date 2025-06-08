@@ -1,6 +1,7 @@
 using UnityEngine;
 using Photon.Pun;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class RPCManager : MonoBehaviourPun
 {
@@ -111,14 +112,6 @@ public void RPC_AvancarParaExplicacao()
     }
 }
 
-
-
-
-
-
-
-
-
 //método de enviar o resultado do dado para o professor
 [PunRPC]
 public void RPC_ResultadoDadoParaProfessor(int resultado, bool sucesso)
@@ -129,6 +122,28 @@ public void RPC_ResultadoDadoParaProfessor(int resultado, bool sucesso)
         controle.ReceberResultadoDado(resultado, sucesso);
     }
 }
+
+
+//Termina a partida para todos, ao professor clicar em "Finalizar partida" quando chega no estado FimPartida
+[PunRPC]
+public void RPC_FinalizarPartidaParaTodos()
+{
+    StartCoroutine(SairEDestruir());
+}
+
+private IEnumerator SairEDestruir()
+{
+    PhotonNetwork.LeaveRoom();
+
+    // Espera até sair da sala completamente
+    while (PhotonNetwork.InRoom)
+        yield return null;
+
+    // Agora é seguro carregar a cena e destruir o objeto
+    SceneManager.LoadScene("SampleScene");
+    Destroy(RPCManager.Instance.gameObject);
+}
+
 
 
 }
