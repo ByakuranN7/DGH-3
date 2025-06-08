@@ -49,6 +49,12 @@ public class EquipeController : MonoBehaviour
     {
         EstadoPartida estado = (EstadoPartida)estadoInt;
 
+        if (estado == EstadoPartida.FimPartida)
+        {
+            textoMensagemEquipe.text = "A partida chegou ao fim. Obrigado por jogar!";
+            return; // Não precisa verificar equipe já que eh o fim
+        }
+
         if (equipeAtual == equipeId)
         {
             switch (estado)

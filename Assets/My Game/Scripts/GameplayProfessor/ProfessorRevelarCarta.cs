@@ -31,7 +31,17 @@ public class ProfessorRevelarCarta : MonoBehaviourPun
     // Agora FINALIZA o turno após a carta ser revelada
     if (professor != null)
     {
-        professor.estadoAtual = EstadoPartida.FimTurno;
+        professor.cartasReveladas++;
+
+        if (professor.cartasReveladas == 4)
+        {
+            professor.estadoAtual = EstadoPartida.FimPartida;
+        }
+        else
+        {
+            professor.estadoAtual = EstadoPartida.FimTurno;
+        }
+
         professor.AtualizarUIProfessor();
         professor.EnviarEstadoParaEquipes();
     }
