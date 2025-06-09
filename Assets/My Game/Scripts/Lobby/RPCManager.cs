@@ -124,6 +124,18 @@ public void RPC_ResultadoDadoParaProfessor(int resultado, bool sucesso)
 }
 
 
+//Sincronizar cronometro
+[PunRPC]
+public void RPC_AtualizarCronometro(float tempoRestante)
+{
+    EquipeController equipe = FindObjectOfType<EquipeController>();
+    if (equipe != null)
+    {
+        equipe.AtualizarCronometro(tempoRestante);
+    }
+}
+
+
 //Termina a partida para todos, ao professor clicar em "Finalizar partida" quando chega no estado FimPartida
 [PunRPC]
 public void RPC_FinalizarPartidaParaTodos()
@@ -143,7 +155,6 @@ private IEnumerator SairEDestruir()
     SceneManager.LoadScene("SampleScene");
     Destroy(RPCManager.Instance.gameObject);
 }
-
 
 
 }
