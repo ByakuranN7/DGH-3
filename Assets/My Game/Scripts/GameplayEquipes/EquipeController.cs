@@ -3,6 +3,8 @@ using TMPro;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
+using System.Collections;
+
 
 public class EquipeController : MonoBehaviour
 {
@@ -10,6 +12,8 @@ public class EquipeController : MonoBehaviour
     public GameObject painelRolarDado; // Painel com imagem e botão
     public TextMeshProUGUI textoDado; // Texto central que mostra o número do dado
     public Button botaoRolarDado; // Botão para rolar o dado
+    public TextMeshProUGUI textoCronometroEquipe; // cronometro (controlado pelo professor)
+
 
     private int equipeId;  // ID da equipe deste jogador
 
@@ -28,6 +32,17 @@ public class EquipeController : MonoBehaviour
         if (textoMensagemEquipe == null) Debug.LogError("O textoMensagemEquipe não está vinculado no Inspector!");
         if (painelRolarDado != null) painelRolarDado.SetActive(false); // Esconde o painel no início
     }
+
+    public void AtualizarCronometro(float tempoRestante)
+    {
+        if (textoCronometroEquipe != null)
+        {
+            int minutos = Mathf.FloorToInt(tempoRestante / 60);
+            int segundos = Mathf.FloorToInt(tempoRestante % 60);
+            textoCronometroEquipe.text = "Cronometro: " + string.Format("{0:00}:{1:00}", minutos, segundos);
+        }
+    }
+
 
     public void BotaoRolarDado()
     {
