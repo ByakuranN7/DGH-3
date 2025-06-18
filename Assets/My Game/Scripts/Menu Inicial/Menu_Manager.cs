@@ -195,7 +195,7 @@ private void Start()
 //Função que Gerencia o canvas que será ativado (se o nome for igual, true; se o nome for diferente, false)
 //isso tudo é definido dentro da unity, sendo assim n há referencia ao nome real dos gameobject nessa parte
 
-void MenuActive(GameObject canvas)
+public void MenuActive(GameObject canvas)
 {
     login_canvas.gameObject.SetActive(login_canvas.name.Equals(canvas.name)); //tela de login
     register_canvas.gameObject.SetActive(register_canvas.name.Equals(canvas.name));
@@ -420,7 +420,6 @@ currentPage = 0;
 MenuActive(menugame_canvas);
 }
 #endregion
-
 
 
 //comando que muda de cena, vai para a cena de Sugestoes.

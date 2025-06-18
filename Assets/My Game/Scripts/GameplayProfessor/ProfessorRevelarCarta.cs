@@ -53,7 +53,7 @@ public class ProfessorRevelarCarta : MonoBehaviourPun
 
 
 
-//Marcar carta visualmente com uma cor levemente verde quando ela é revelada, além de desativar seu botão para evitar revelação duplicada.
+//Marca a carta visualmente com uma cor verde quando ela é revelada, além de desativar seu botão para evitar revelação duplicada
 public void MarcarCartaComoRevelada(CategoriaCarta categoria)
 {
     // Acha o script que tem os slots
@@ -89,7 +89,7 @@ public void MarcarCartaComoRevelada(CategoriaCarta categoria)
         var imagem = cartaGO.GetComponent<UnityEngine.UI.Image>();
         if (imagem != null)
         {
-            imagem.color = new Color(0.65f, 0.96f, 0.63f); // Verde claro
+            imagem.color = new Color(0.65f, 0.96f, 0.63f); // Verde
         }
 
         var botao = cartaGO.GetComponent<UnityEngine.UI.Button>();

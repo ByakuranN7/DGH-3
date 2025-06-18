@@ -47,7 +47,7 @@ public class PontuacaoUI : MonoBehaviourPunCallbacks
             }
         }
 
-        // Se ninguém tem equipe 3, esconde o texto da equipe 3
+        // Se não tem equipe 3, esconde o texto da equipe 3
         textosEquipes[2].gameObject.SetActive(equipe3Existe);
     }
 }

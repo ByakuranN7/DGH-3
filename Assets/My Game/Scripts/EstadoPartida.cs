@@ -1,7 +1,7 @@
 public enum EstadoPartida
 {
     NarrativaInicial, //Fala para o professor contar a narrativa inicial e dar um tempo para os alunos se prepararem antes de realmente começar a partida
-    TurnoEquipe_EsperaComecar, //Informa a equipe e permite que pressione um botão para começar o turno da equipe em questão
+    TurnoEquipe_EsperaComecar, //Informa a equipe e permite que o professor pressione um botão para começar o turno da equipe em questão
     TurnoEquipe_Pergunta, //Informa que a equipe tem direito a uma pergunta, apresentando um botão para informar quando o professor respondeu a pergunta, para ir para o proximo estado
     TurnoEquipe_SelecionarProcedimento, //Libera a seleção de procedimento para a equipe em questao
     TurnoEquipe_Explicacao, //Mostra na tela do professor o procedimento escolhido, além de pedir para ele escolher o líder da rodada (listando os memebros) e permitindo que ele utilize botoes para aprovar ou n a explicação

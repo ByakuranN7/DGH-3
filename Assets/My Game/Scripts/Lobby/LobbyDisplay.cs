@@ -87,7 +87,7 @@ public void OnClickFixarIdentificadoresDeEquipe()
     foreach (Player player in PhotonNetwork.PlayerList)
     {
         if (player.IsMasterClient)
-            continue; // Pulamos o professor, ele não recebe um ID de equipe
+            continue; // Pula o professor
 
         // Verifica se o jogador tem nomes definidos na propriedade "teamNames"
         if (player.CustomProperties.TryGetValue("teamNames", out object nomesObj))
@@ -98,7 +98,7 @@ public void OnClickFixarIdentificadoresDeEquipe()
                 { "equipeId", equipeIndex } // Define o identificador da equipe com base na ordem visual
             };
 
-            player.SetCustomProperties(props); // Envia essa propriedade para o Photon (será sincronizada)
+            player.SetCustomProperties(props); // Envia essa propriedade para o Photon
             //Debug.Log($"Equipe com teamNames '{(string)nomesObj}' recebeu equipeId: {equipeIndex}");
             equipeIndex++; // Avança para o próximo número de equipe
         }

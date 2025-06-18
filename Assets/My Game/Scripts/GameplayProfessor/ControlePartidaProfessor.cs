@@ -366,7 +366,7 @@ public void ContinuarCronometro()
                 break;
 
             case EstadoPartida.TurnoEquipe_Pontuar:
-                textoMensagemProfessor.text = $"Baseando-se na explicação do líder da rodada, levando em consideração a narrativa e o contexto da situação apresentada, deseja revelar uma carta?\n\nLembrete: Caso o procedimento revelaria uma carta, mas a explicação do líder não descreveu uma ação que, na prática, levaria uma pessoa a obter o resultado esperado, não revele a carta.";
+                textoMensagemProfessor.text = $"Baseando-se na explicação do líder da rodada, levando em consideração a narrativa e o contexto da situação apresentada, deseja revelar uma carta?\n\nLembrete: Caso o procedimento revelaria uma carta, mas a explicação do líder não descreveu uma ação que, na prática, levaria uma pessoa a obter o resultado esperado, não revele a carta. O 'Detectado por:' é apenas uma sugestão";
                 botaoRevelarCarta.gameObject.SetActive(true);
                 botaoNaoRevelarCarta.gameObject.SetActive(true);
                 break;

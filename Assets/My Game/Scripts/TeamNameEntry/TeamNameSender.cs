@@ -7,7 +7,7 @@ using Photon.Realtime;
 
 public class TeamNameSender : MonoBehaviourPunCallbacks
 {
-    public TMP_InputField[] nameInputs; // Arraste os InputFields aqui no Inspector
+    public TMP_InputField[] nameInputs; // Tenho que arrastar os InputFields aqui no Inspector
 
     public void OnConfirmClicked()
     {
@@ -19,7 +19,7 @@ public class TeamNameSender : MonoBehaviourPunCallbacks
                 validNames.Add(input.text);
         }
 
-        // Junta todos os nomes com separador, exemplo: "João|Maria|Lucas"
+        // Junta todos os nomes com separador, exemplo: "João|Maria|Guilherme"
         string teamNames = string.Join("|", validNames);
 
         // Salva isso como uma propriedade customizada do jogador local

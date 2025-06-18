@@ -7,7 +7,7 @@ public class BotaoCartaScript : MonoBehaviour
 
     private void Awake()
     {
-        // Opcional: validar se o botão tem um componente Button
+        // Posso remover
         if (GetComponent<Button>() == null)
             Debug.LogWarning($"{gameObject.name} não tem componente Button.");
     }

@@ -37,7 +37,7 @@ public class AbrirCadastroSugestao : MonoBehaviour
         {
             botaoVoltarMenuPrincipal.onClick.AddListener(() =>
             {
-                SceneManager.LoadScene("SampleScene");
+                SceneManager.LoadScene("MenuInicial");
             });
         }
     }

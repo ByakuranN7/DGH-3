@@ -31,7 +31,7 @@ public class AlunoRevelarCarta : MonoBehaviourPunCallbacks
     public void RevelarCarta(string idCarta, string categoriaStr)
     {
         CategoriaCarta categoria = (CategoriaCarta)System.Enum.Parse(typeof(CategoriaCarta), categoriaStr);
-
+        //esse if nao preciso mais, esta ativo como segurança para os testes
         if ((categoria == CategoriaCarta.InvasaoInicial && invasaoInicialRevelada) ||
             (categoria == CategoriaCarta.ObtencaoPrivilegios && obtencaoPrivilegiosRevelada) ||
             (categoria == CategoriaCarta.Persistencia && persistenciaRevelada) ||
