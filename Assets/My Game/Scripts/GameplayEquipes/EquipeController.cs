@@ -86,7 +86,7 @@ public class EquipeController : MonoBehaviour
                     break;
 
                 case EstadoPartida.TurnoEquipe_Pergunta:
-                    textoMensagemEquipe.text = "Faça uma pergunta ao professor, a fim de tirar Dúvidas. Caso não tenha perguntas, peça para pular esta etapa e ir direto para a seleção de procedimento.";
+                    textoMensagemEquipe.text = "Faça uma pergunta ao professor, a fim de tirar dúvidas. Caso não tenha perguntas, peça para pular esta etapa e ir direto para a seleção de procedimento.";
                     break;
 
                 case EstadoPartida.TurnoEquipe_SelecionarProcedimento:
