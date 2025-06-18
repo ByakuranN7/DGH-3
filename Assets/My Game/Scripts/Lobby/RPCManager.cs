@@ -25,6 +25,24 @@ public class RPCManager : MonoBehaviourPun
 
 
 
+    // Método público para iniciar a partida, chamado pelo LobbyController
+    public void IniciarPartida()
+    {
+        if (!PhotonNetwork.IsMasterClient) return;
+
+        photonView.RPC("RPC_IniciarPartida", RpcTarget.All);
+    }
+
+    //Método público para enviar os jogadores para a cena correta pós lobby (atrelado ao botão de começar partida do lobby, acessivel apenas pelo professor)
+    [PunRPC]
+    void RPC_IniciarPartida()
+    {
+        if (PhotonNetwork.IsMasterClient)
+            SceneManager.LoadScene("SelecaoCartasMestre"); // Tela do professor
+        else
+            SceneManager.LoadScene("GameplayEquipes"); // Tela dos alunos
+    }
+    
 
 
 
@@ -43,23 +61,10 @@ public class RPCManager : MonoBehaviourPun
         }
     }
 
-    // Método público para iniciar a partida, chamado pelo LobbyController
-    public void IniciarPartida()
-    {
-        if (!PhotonNetwork.IsMasterClient) return;
 
-        photonView.RPC("RPC_IniciarPartida", RpcTarget.All);
-    }
 
-    //Método público para enviar os jogadores para a cena correta pós lobby (atrelado ao botão de começar partida do lobby, acessivel apenas pelo professor)
-    [PunRPC]
-    void RPC_IniciarPartida()
-    {
-        if (PhotonNetwork.IsMasterClient)
-            SceneManager.LoadScene("SelecaoCartasMestre"); // Tela do professor
-        else
-            SceneManager.LoadScene("GameplayEquipes"); // Tela dos alunos
-    }
+
+
 
 
 
@@ -152,7 +157,7 @@ private IEnumerator SairEDestruir()
         yield return null;
 
     // Agora é seguro carregar a cena e destruir o objeto
-    SceneManager.LoadScene("SampleScene");
+    SceneManager.LoadScene("MenuInicial");
     Destroy(RPCManager.Instance.gameObject);
 }
 

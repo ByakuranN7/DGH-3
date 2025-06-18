@@ -9,7 +9,7 @@ public class SelecionadorCartasUI : MonoBehaviour
     public GameObject tela;            // Painel da tela de seleção (para ativar/desativar)
     public Button botaoVoltar;         // Botão para voltar à tela anterior
 
-    // Referência para as 4 imagens placeholders na interface (arraste no Inspector)
+    // Referência para as 4 imagens placeholders na interface (arrastei no Inspector)
     public Image[] imagensPlaceholders;
 
     private CategoriaCarta categoriaAtual;
