@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SugestoesUI : MonoBehaviour
 {
-    public GameObject sugestaoItemPrefab; // seu prefab com 4 cartas + texto
+    public GameObject sugestaoItemPrefab; // prefab com 4 cartas + texto
     public Transform sugestoesContainer;  // onde vão os itens na UI
 
     private Rest_Controller restController;
