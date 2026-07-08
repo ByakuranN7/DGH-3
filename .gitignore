@@ -71,4 +71,9 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
-UnityNodeLogin/
+# Node.js dependencies
+node_modules/
+
+# Environment variables
+.env
+*.env

@@ -183,7 +183,7 @@ private void Start()
 
 
 
-    //MenuActive(login_canvas); //começa o jogo pela tela de login
+    //MenuActive(login_canvas); //começa o jogo pela tela de login, atualmente desativado para realizar testes praticos com os alunos sem a necessidade de uma conta
     MenuActive(menugame_canvas); //começa o jogo direto pela tela principal, sem necessidade de logar
 
 }

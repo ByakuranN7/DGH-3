@@ -19,8 +19,8 @@ public class Rest_Controller : MonoBehaviour
 
         Login login = new Login(p_email, p_password);
 
-        //Função REST
-        StartCoroutine(LoginGet(WEB_URL, routeLogin, login, callBack));
+        //Função REST (via POST)
+        StartCoroutine(LoginPost(WEB_URL, routeLogin, login, callBack));
     }
 
  
@@ -37,14 +37,23 @@ public class Rest_Controller : MonoBehaviour
 
  
 
-#region ######### LOGIN GET #########
-    public IEnumerator LoginGet(string url, string route, Login loginPlayer, System.Action<Message> callBack){
-
-        string urlNew = string.Format("{0}{1}/{2}/{3}", url, route, loginPlayer.Email, loginPlayer.Password); //"localhost:3000/login/teste@teste.com/123456"
+#region ######### LOGIN POST #########
+    
+    // Envia email/senha no corpo da requisição (JSON), assim como o registro.
+    public IEnumerator LoginPost(string url, string route, Login loginPlayer, System.Action<Message> callBack)
+    {
+        string urlNew = string.Format("{0}{1}", url, route); // "localhost:3000/login"
 
         Debug.Log(urlNew);
 
-        using (UnityWebRequest www = UnityWebRequest.Get(urlNew)){
+        string jsonData = JsonUtility.ToJson(loginPlayer);
+
+        using (UnityWebRequest www = new UnityWebRequest(urlNew, "POST"))
+        {
+            byte[] jsonToSend = System.Text.Encoding.UTF8.GetBytes(jsonData);
+            www.uploadHandler = new UploadHandlerRaw(jsonToSend);
+            www.downloadHandler = new DownloadHandlerBuffer();
+            www.SetRequestHeader("Content-Type", "application/json");
 
             yield return www.SendWebRequest();
 
@@ -53,21 +62,20 @@ public class Rest_Controller : MonoBehaviour
                 Message msg_err = new Message((int)www.responseCode, www.error);
                 Debug.Log(www.error);
                 callBack(msg_err);
-            }else{
-
+            }
+            else
+            {
                 if (www.isDone)
                 {
                     string jsonResult = System.Text.Encoding.UTF8.GetString(www.downloadHandler.data);
-                    
+
                     Debug.Log(jsonResult);
-                    
+
                     Message msg_result = JsonUtility.FromJson<Message>(jsonResult);
-                    
+
                     callBack(msg_result);
                 }
             }
-
-
         }
     }
 #endregion
@@ -78,18 +86,18 @@ public class Rest_Controller : MonoBehaviour
     public IEnumerator RegisterPost(string url, string route, Login loginPlayer, System.Action<Message> callBack)
     {
 
-        string urlNew = string.Format("{0}{1}", url, route); //"localhost:3000/register"
+        string urlNew = string.Format("{0}{1}", url, route);
 
         Debug.Log(urlNew);
 
         string jsonData = JsonUtility.ToJson(loginPlayer);
 
-        using (UnityWebRequest www = UnityWebRequest.Post(urlNew, jsonData))
+        using (UnityWebRequest www = new UnityWebRequest(urlNew, "POST"))
         {
 
             www.SetRequestHeader("content-type", "application/json");
-            www.uploadHandler.contentType = "application/json";
             www.uploadHandler = new UploadHandlerRaw(System.Text.Encoding.UTF8.GetBytes(jsonData));
+            www.downloadHandler = new DownloadHandlerBuffer();
             yield return www.SendWebRequest(); //faz o envio
 
             if (www.result == UnityWebRequest.Result.ConnectionError)
@@ -113,13 +121,7 @@ public class Rest_Controller : MonoBehaviour
                     Debug.Log(msg_result);
                     www.Dispose(); 
                     callBack(msg_result);
-                }//else{
-                //isso aqui ta errado, é pra quando botam o email em formato errado ou um email existente, mas quando adiciono ele buga o registro (apesar de ajeitar o resto)
-                //Message msg_err = new Message((int)www.responseCode, www.error);
-                //Debug.Log(www.error);
-                //www.Dispose(); 
-              // callBack(msg_err);
-            //}
+                }
             }
 
 
@@ -134,7 +136,6 @@ public class Rest_Controller : MonoBehaviour
 
 
 
-//Partes relacionadas a criação/visualização de sugestões.
 #region ######### SUGESTÕES #########
 
 // GET - Buscar sugestões

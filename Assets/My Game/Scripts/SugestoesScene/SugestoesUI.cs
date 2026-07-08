@@ -11,7 +11,7 @@ public class SugestoesUI : MonoBehaviour
     void Start()
     {
         restController = FindObjectOfType<Rest_Controller>();
-
+ 
         if (restController == null)
         {
             Debug.LogError("Rest_Controller não encontrado na cena!");
