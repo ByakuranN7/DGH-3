@@ -77,3 +77,6 @@ node_modules/
 # Environment variables
 .env
 *.env
+
+#Photon Pun 2 unique appID
+Assets/Photon/PhotonUnityNetworking/Resources/PhotonServerSettings.asset
